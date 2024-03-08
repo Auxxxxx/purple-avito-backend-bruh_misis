@@ -1,4 +1,4 @@
-from sqlalchemy import delete, update, select
+from sqlalchemy import delete, update
 from sqlalchemy.orm import Session
 
 from auth.security import get_password_hash

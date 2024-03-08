@@ -1,4 +1,3 @@
-import os
 from datetime import timedelta, datetime
 
 from fastapi import HTTPException, status

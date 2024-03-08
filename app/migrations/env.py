@@ -1,13 +1,8 @@
 from logging.config import fileConfig
 
-from sqlalchemy import engine_from_config
-from sqlalchemy import pool
-
 from alembic import context
 
 from db.models.base import Base
-import db.models.user
-import db.models.item
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -64,7 +59,7 @@ def run_migrations_online() -> None:
     from sqlalchemy import create_engine
     import re
 
-    from config import DB_HOST, DB_PORT, DB_NAME, DB_USER_NAME, DB_USER_PASSWORD
+    from app.config import DB_HOST, DB_PORT, DB_NAME, DB_USER_NAME, DB_USER_PASSWORD
 
     url_tokens = {
         "DB_HOST": DB_HOST,

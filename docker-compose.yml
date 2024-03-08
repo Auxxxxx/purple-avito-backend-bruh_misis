@@ -7,23 +7,24 @@ services:
         POSTGRES_USER: ${DB_USER_NAME}
         POSTGRES_PASSWORD: ${DB_USER_PASSWORD}
         POSTGRES_DB: ${DB_NAME}
-        POSTGRES_PORT: "5432"
+        POSTGRES_PORT: ${DB_PORT}
       ports:
         - "${DB_PORT}:${DB_PORT}"
       healthcheck:
-        test: [ "CMD-SHELL", "pg_isready -h localhost -p $$DB_PORT" ]
+        test: [ "CMD-SHELL", "sh -c 'pg_isready -U ${DB_USER_NAME} -d ${DB_NAME}'" ]
         interval: 3s
         timeout: 3s
         retries: 5
       volumes:
-        - /Users/thechosenone/PycharmProjects/fastApiProject/deploy/db_data
+        - ./postgres-data:/var/lib/docker/volumes/purple-avito-backend-bruh_misis/_data
 
   python-fastapi:
+      image: auxxxxx/purple-avtio-fastapi-backend:202403081642
       build:
         context:
-          ../
+          .
         dockerfile:
-          deploy/app.Dockerfile
+          .Dockerfile
       depends_on:
         postgres-database:
           condition: service_healthy
