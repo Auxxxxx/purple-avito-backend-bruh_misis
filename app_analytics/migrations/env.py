@@ -59,7 +59,7 @@ def run_migrations_online() -> None:
     from sqlalchemy import create_engine
     import re
 
-    from app.config import DB_HOST, DB_PORT, DB_NAME, DB_USER_NAME, DB_USER_PASSWORD
+    from app_analytics.config import DB_HOST, DB_PORT, DB_NAME, DB_USER_NAME, DB_USER_PASSWORD
 
     url_tokens = {
         "DB_HOST": DB_HOST,

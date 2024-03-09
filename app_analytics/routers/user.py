@@ -15,15 +15,18 @@ router = APIRouter(
 
 @router.post("/create", response_model=User)
 async def create(user: UserCreate, db: SessionLocal = Depends(get_db)):
+    print(user)
     try:
         db_user = create_user(db, user)
     except Exception as e:
+        print(e.__cause__)
         raise HTTPException(status_code=500, detail="Internal server error")
     return db_user
 
 
 @router.get("/get_by_id/{user_id}", response_model=User)
 async def get_user(user_id: int, db: SessionLocal = Depends(get_db)):
+    # print(user_id)
     user = get_user_by_id(db, user_id)
 
     if not user:
