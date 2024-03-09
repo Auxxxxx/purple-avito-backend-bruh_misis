@@ -27,8 +27,10 @@ RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 #As this has all the code which is what changes most frequently the Docker cache won't be used for this or any following steps easily.
 #
 #So, it's important to put this near the end of the Dockerfile, to optimize the container image build times.
-COPY app_analytics /code/app
+COPY app_analytics /code/app_analytics
+COPY alembic.ini /code
 
+CMD ["alembic", "upgrade", "head"]
 #
 # Set the command to run the uvicorn server.
-CMD ["python3", "./app/main.py"]
+CMD ["python3", "./app_analytics/main.py"]

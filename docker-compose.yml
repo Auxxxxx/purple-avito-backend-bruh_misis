@@ -1,5 +1,5 @@
 services:
-  postgres-database:
+  postgres:
       image: postgres:15
       env_file:
         - .env
@@ -19,18 +19,18 @@ services:
         - ./postgres-data:/var/lib/docker/volumes/purple-avito-backend-bruh_misis/_data
 
   python-fastapi:
-#      image: auxxxxx/purple-avtio-fastapi-backend:202403081642
+      image: auxxxxx/purple-avtio-fastapi-backend:202403092127
       build:
         context:
           .
         dockerfile:
           .Dockerfile
       depends_on:
-        postgres-database:
+        postgres:
           condition: service_healthy
       env_file:
         - .env
       environment:
-        DATABASE_HOST: postgres_database
+        DATABASE_HOST: postgres
       ports:
         - "${PORT}:${PORT}"

@@ -1,5 +1,4 @@
 deploy/
-*.ini
 LICENSE
 .gitignore
 .env.example
