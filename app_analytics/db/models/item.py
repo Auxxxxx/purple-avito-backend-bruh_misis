@@ -2,7 +2,6 @@ from sqlalchemy import Integer, String, Boolean
 from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column
 from pydantic import BaseModel
-
 from .base import Base
 
 

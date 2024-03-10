@@ -1,3 +1,6 @@
+import json
+
+
 class LocationNode:
     location_id = 0
 
@@ -10,10 +13,13 @@ class LocationNode:
     def add_child(self, child):
         self.children.append(child)
 
-    def print_tree(self, indent=0):
-        print(f"{' ' * indent}{self.id} - {self.name}")
-        for child in self.children:
-            child.print_tree(indent + 2)
+    def to_dict(self):
+        # Рекурсивно преобразовываем структуру в словарь
+        return {
+            'id': self.id,
+            'name': self.name,
+            'children': [child.to_dict() for child in self.children]
+        }
 
 
 def generate_location_indent(indent):
@@ -674,7 +680,6 @@ def get_locations_tree():
                                 "Некрасовское", "Новый Некоуз", "Переславль-Залесский", "Петровское", "Пошехонье",
                                 "Пречистое", "Углич", "Тутаев"],
     }
-
     for region, cities in raw_locations.items():
         region_node = LocationNode(region)
 
@@ -686,6 +691,10 @@ def get_locations_tree():
 
     return all_regions
 
+# Получаем словарь из дерева и сериализуем его в JSON
 
 
+locations_tree = get_locations_tree()
+locations_dict = locations_tree.to_dict()
+new_json = json.dumps(locations_dict, ensure_ascii=False, indent=4)
 
