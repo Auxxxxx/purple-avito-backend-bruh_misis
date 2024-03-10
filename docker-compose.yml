@@ -1,6 +1,7 @@
 services:
   postgres:
       image: postgres:15
+      container_name: postgres
       env_file:
         - .env
       environment:
@@ -19,7 +20,7 @@ services:
         - ./postgres-data:/var/lib/docker/volumes/purple-avito-backend-bruh_misis/_data
 
   python-fastapi:
-      image: auxxxxx/purple-avtio-fastapi-backend:202403102228
+      image: auxxxxx/purple-avtio-fastapi-backend:202403102337
       build:
         context:
           .
