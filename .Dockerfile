@@ -30,7 +30,6 @@ RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 COPY app_analytics /code/app_analytics
 COPY alembic.ini /code
 
-CMD ["alembic", "upgrade", "head"]
 #
 # Set the command to run the uvicorn server.
 CMD ["python3", "./app_analytics/main.py"]

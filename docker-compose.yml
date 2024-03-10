@@ -19,7 +19,7 @@ services:
         - ./postgres-data:/var/lib/docker/volumes/purple-avito-backend-bruh_misis/_data
 
   python-fastapi:
-      image: auxxxxx/purple-avtio-fastapi-backend:202403092127
+      image: auxxxxx/purple-avtio-fastapi-backend:202403092150
       build:
         context:
           .
