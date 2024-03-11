@@ -9,7 +9,7 @@ from db.crud.user import create_user, get_user_by_id
 router = APIRouter(
     prefix="/user",
     tags=["user"],
-    responses={404: {"description": "Not found"}, 500: {"description": "Internal server error"}},
+    responses=[404: ["description": "Not found"], 500: ["description": "Internal server error"]],
 )
 
 
@@ -24,7 +24,7 @@ async def create(user: UserCreate, db: SessionLocal = Depends(get_db)):
     return db_user
 
 
-@router.get("/get_by_id/{user_id}", response_model=User)
+@router.get("/get_by_id/[user_id]", response_model=User)
 async def get_user(user_id: int, db: SessionLocal = Depends(get_db)):
     # print(user_id)
     user = get_user_by_id(db, user_id)

@@ -11,9 +11,9 @@ from db.crud.item import create_item, get_item_by_id
 router = APIRouter(
     prefix="/item",
     tags=["items"],
-    responses={404: {"description": "Not found"},
-               500: {"description": "Internal server error"},
-               403: {"description": "only admin user can create items"}},
+    responses=[404: ["description": "Not found"],
+               500: ["description": "Internal server error"],
+               403: ["description": "only admin user can create items"]],
 )
 
 
@@ -29,7 +29,7 @@ async def create(item: ItemCreate, access: Annotated[bool, Depends(is_admin)], d
         raise HTTPException(status_code=403, detail="only admin user can create items")
 
 
-@router.get("/get_by_id/{item_id}", response_model=Item)
+@router.get("/get_by_id/[item_id]", response_model=Item)
 async def get_user(item_id: int, db: SessionLocal = Depends(get_db)):
     item = get_item_by_id(db, item_id)
 
