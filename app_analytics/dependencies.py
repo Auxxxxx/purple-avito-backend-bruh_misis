@@ -3,7 +3,6 @@ from typing import Annotated
 from fastapi import Depends
 from fastapi.security import OAuth2PasswordBearer
 
-from auth.jwt import decode_access_token, credentials_exception
 from db.crud.user import get_user_by_id
 from db.db import SessionLocal
 from db.models.user import SqlUser

@@ -30,7 +30,7 @@ class User(UserBase):
 
 # an example mapping using the base
 class SqlUser(Base):
-    __tablename__ = "user"
+    __tablename__ = "user_table"
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     login: Mapped[str] = mapped_column(String, unique=True)

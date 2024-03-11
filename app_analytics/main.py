@@ -1,9 +1,10 @@
 import uvicorn
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
 
-from routers import user, auth, item
+from dependencies import get_db
+from routers import user, item, location
 from db.models import user as t_user, item as t_item, associations as t_associations
-from db.db import engine
+from db.db import engine, SessionLocal
 import alembic.config
 
 app = FastAPI(
@@ -11,8 +12,8 @@ app = FastAPI(
 )
 
 app.include_router(user.router)
-app.include_router(auth.router)
 app.include_router(item.router)
+app.include_router(location.router)
 
 alembicArgs = [
     'upgrade', 'head',
