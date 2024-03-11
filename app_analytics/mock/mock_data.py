@@ -1,14 +1,18 @@
 import json
 
 
+from typing import List
+
+
+
 class LocationNode:
     location_id = 0
 
     def __init__(self, name):
         LocationNode.location_id += 1
-        self.id = LocationNode.location_id
-        self.name = name
-        self.children = []
+        self.id: int = LocationNode.location_id
+        self.name: str = name
+        self.children: List[LocationNode] = []
 
     def add_child(self, child):
         self.children.append(child)
@@ -694,7 +698,9 @@ def get_locations_tree():
 # Получаем словарь из дерева и сериализуем его в JSON
 
 
-locations_tree = get_locations_tree()
-locations_dict = locations_tree.to_dict()
-new_json = json.dumps(locations_dict, ensure_ascii=False, indent=4)
+def collect_json() -> str:
+    locations_tree = get_locations_tree()
+    locations_dict = locations_tree.to_dict()
+    new_json = json.dumps(locations_dict, ensure_ascii=False, indent=4)
+    return new_json
 
