@@ -1,6 +1,6 @@
 import uvicorn
 from fastapi import FastAPI, Depends
-from fastapi.middleware.cors import CORSMiddleware
+from starlette.middleware.cors import CORSMiddleware
 
 from dependencies import get_db
 from routers import user, item, location, microcategory
@@ -12,16 +12,18 @@ app = FastAPI(
     title="Purple It Hack. Avtito track by BruhMisis"
 )
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*s"]
-)
-
-
 app.include_router(user.router)
 app.include_router(item.router)
 app.include_router(location.router)
 app.include_router(microcategory.router)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*s"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 alembicArgs = [
     'upgrade', 'head',
