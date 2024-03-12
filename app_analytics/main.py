@@ -3,7 +3,7 @@ from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
 
 from dependencies import get_db
-from routers import user, item, location
+from routers import user, item, location, microcategory
 from db.models import user as t_user, item as t_item, associations as t_associations
 from db.db import engine, SessionLocal
 import alembic.config
@@ -12,18 +12,19 @@ app = FastAPI(
     title="Purple It Hack. Avtito track by BruhMisis"
 )
 
-# app.add_middleware(
-#     CORSMiddleware,
-#     allow_origins=["*s"],
-#     allow_credentials=True,
-#     allow_methods=["*"],
-#     allow_headers=["*"],
-# )
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*s"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 app.include_router(user.router)
 app.include_router(item.router)
 app.include_router(location.router)
+app.include_router(microcategory.router)
 
 alembicArgs = [
     'upgrade', 'head',

@@ -67,5 +67,5 @@ def get_category_tree():
 def collect_json() -> str:
     category_tree = get_category_tree()
     categories_dict = category_tree.to_dict()
-    new_json = json.dumps(categories_dict, ensure_ascii=False, indent=4)
+    new_json = json.dumps(categories_dict, ensure_ascii=False)
     return new_json

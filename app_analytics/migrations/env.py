@@ -42,7 +42,7 @@ def run_migrations_offline() -> None:
         url=url,
         target_metadata=target_metadata,
         literal_binds=True,
-        dialect_opts=["paramstyle": "named"],
+        dialect_opts={"paramstyle": "named"},
     )
 
     with context.begin_transaction():
@@ -61,17 +61,17 @@ def run_migrations_online() -> None:
 
     from app_analytics.config import DB_HOST, DB_PORT, DB_NAME, DB_USER_NAME, DB_USER_PASSWORD
 
-    url_tokens = [
+    url_tokens = {
         "DB_HOST": DB_HOST,
         "DB_PORT": DB_PORT,
         "DB_NAME": DB_NAME,
         "DB_USER_NAME": DB_USER_NAME,
         "DB_USER_PASSWORD": DB_USER_PASSWORD,
-    ]
+    }
 
     url = config.get_main_option("sqlalchemy.url")
 
-    url = re.sub(r"\$[(.+?)]", lambda m: url_tokens[m.group(1)], url)
+    url = re.sub(r"\${(.+?)}", lambda m: url_tokens[m.group(1)], url)
 
     connectable = create_engine(url)
 

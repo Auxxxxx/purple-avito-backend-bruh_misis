@@ -15,7 +15,7 @@ from db.models.user import User
 router = APIRouter(
     prefix="/auth",
     tags=["auth"],
-    responses=[404: ["description": "Not found"], 500: ["description": "Internal server error"]],
+    responses={404: {"description": "Not found"}, 500: {"description": "Internal server error"}},
 )
 
 
@@ -29,13 +29,13 @@ async def login_for_access_token(
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Incorrect username or password",
-            headers=["WWW-Authenticate": "Bearer"],
+            headers={"WWW-Authenticate": "Bearer"},
         )
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = create_access_token(
-        data=["sub": str(user.id)], expires_delta=access_token_expires
+        data={"sub": str(user.id)}, expires_delta=access_token_expires
     )
-    return ["access_token": access_token, "token_type": "bearer"]
+    return {"access_token": access_token, "token_type": "bearer"}
 
 
 @router.get("/users/me/", response_model=User)
@@ -49,4 +49,4 @@ async def read_users_me(
 async def read_own_items(
     current_user: Annotated[User, Depends(get_current_user)]
 ):
-    return [["items": current_user.items, "owner": current_user.name]]
+    return [{"items": current_user.items, "owner": current_user.name}]
