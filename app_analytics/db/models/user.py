@@ -5,7 +5,7 @@ from sqlalchemy.orm import Mapped, relationship
 from sqlalchemy.orm import mapped_column
 from pydantic import BaseModel
 
-from .base import Base
+from db.db import Base
 from .associations import user_item
 from .item import SqlItem, Item
 

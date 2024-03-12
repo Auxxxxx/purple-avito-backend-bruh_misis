@@ -3,7 +3,7 @@ from sqlalchemy import Integer, String
 from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column
 
-from .base import Base
+from db.db import Base
 
 
 class MicrocategoryBase(BaseModel):

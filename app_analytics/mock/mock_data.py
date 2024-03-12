@@ -701,6 +701,6 @@ def get_locations_tree():
 def collect_json() -> str:
     locations_tree = get_locations_tree()
     locations_dict = locations_tree.to_dict()
-    new_json = json.dumps(locations_dict, ensure_ascii=False, indent=4)
+    new_json = json.dumps(locations_dict, ensure_ascii=False)
     return new_json
 

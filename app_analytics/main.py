@@ -1,5 +1,6 @@
 import uvicorn
 from fastapi import FastAPI, Depends
+from fastapi.middleware.cors import CORSMiddleware
 
 from dependencies import get_db
 from routers import user, item, location
@@ -10,6 +11,15 @@ import alembic.config
 app = FastAPI(
     title="Purple It Hack. Avtito track by BruhMisis"
 )
+
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=["*s"],
+#     allow_credentials=True,
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
+
 
 app.include_router(user.router)
 app.include_router(item.router)

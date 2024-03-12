@@ -9,7 +9,7 @@ from db.crud.user import create_user, get_user_by_id
 router = APIRouter(
     prefix="/user",
     tags=["user"],
-    responses=[404: ["description": "Not found"], 500: ["description": "Internal server error"]],
+    responses={404: {"description": "Not found"}, 500: {"description": "Internal server error"}},
 )
 
 

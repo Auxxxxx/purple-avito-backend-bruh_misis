@@ -64,6 +64,8 @@ def get_category_tree():
 # Получаем словарь из дерева и сериализуем его в JSON
 
 
-category_tree = get_category_tree()
-categories_dict = category_tree.to_dict()
-new_json = json.dumps(categories_dict, ensure_ascii=False, indent=4)
+def collect_json() -> str:
+    category_tree = get_category_tree()
+    categories_dict = category_tree.to_dict()
+    new_json = json.dumps(categories_dict, ensure_ascii=False, indent=4)
+    return new_json

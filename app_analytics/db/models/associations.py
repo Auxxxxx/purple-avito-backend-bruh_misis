@@ -1,6 +1,6 @@
 from sqlalchemy import Table, Column, ForeignKey, Integer
 
-from .base import Base
+from db.db import Base
 
 
 user_item = Table(

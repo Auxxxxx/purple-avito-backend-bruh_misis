@@ -6,7 +6,8 @@ from sqlalchemy.orm import mapped_column
 from mock.mock_data import get_locations_tree
 
 from dependencies import get_db
-from .base import Base
+from db.db import Base
+from ..db import SessionLocal
 
 
 class LocationBase(BaseModel):
@@ -17,6 +18,11 @@ class LocationBase(BaseModel):
 class LocationCreate(LocationBase):
     id: int
 
+    def __init__(self, id: int, name: str, parent_id: int):
+        super().__init__()
+        self.id = id
+        self.str = str
+        self.parent_id = parent_id
 
 class Location(LocationCreate):
 
@@ -33,6 +39,8 @@ class SqlLocation(Base):
 
 
 @event.listens_for(SqlLocation.__table__, 'after_create')
-def insert_initial_values(*args, **kwargs):
-    with Depends(get_db) as db:
-        initial_locations = get_locations_tree()
+def insert_initial_values(db: SessionLocal = Depends(get_db), *args, **kwargs):
+    location = LocationCreate(1, "a", 5)
+    db_location = SqlLocation(**location.model_dump())
+    db.add(db_location)
+    db.commit()
