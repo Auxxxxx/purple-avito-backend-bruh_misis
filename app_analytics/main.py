@@ -17,17 +17,17 @@ app.include_router(item.router)
 app.include_router(location.router)
 app.include_router(microcategory.router)
 
-# app.add_middleware(
-#     CORSMiddleware,
-#     allow_origins=["*"],
-#     allow_methods=["*"],
-#     allow_headers=["*"],
-# )
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-# alembicArgs = [
-#     'upgrade', 'head',
-# ]
-# alembic.config.main(argv=alembicArgs)
+alembicArgs = [
+    'upgrade', 'head',
+]
+alembic.config.main(argv=alembicArgs)
 
 # t_user.Base.metadata.create_all(engine)
 # t_item.Base.metadata.create_all(engine)
