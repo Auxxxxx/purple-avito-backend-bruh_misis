@@ -1,4 +1,13 @@
 services:
+  front:
+    image: auxxxxx/purple-avito-vue-frontend:202403132007
+    ports:
+      - "8080:8080"
+    container_name: vuefront
+    depends_on:
+      - python-fastapi
+    restart: always
+
   postgres:
       image: postgres:15
       container_name: postgres

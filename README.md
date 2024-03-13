@@ -28,4 +28,4 @@
 | SQLAlchemy       | https://docs.sqlalchemy.org/en/20/                         |
 | Psychopg         | https://www.psycopg.org/docs/                              |
 
-GitHub репозиторий фронтенд-приложения
+GitHub репозиторий фронтенд-приложения https://github.com/Auxxxxx/purple-avito-frontend-bruh_misis
