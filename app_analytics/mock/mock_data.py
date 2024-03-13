@@ -1,5 +1,5 @@
 import json
-
+from copy import copy
 
 from typing import List
 
@@ -31,6 +31,7 @@ def generate_location_indent(indent):
 
 
 def get_locations_tree():
+    LocationNode.location_id = 0
     all_regions = LocationNode("Все регионы")
 
     raw_locations = {
@@ -698,9 +699,8 @@ def get_locations_tree():
 # Получаем словарь из дерева и сериализуем его в JSON
 
 
-def collect_json() -> str:
-    locations_tree = get_locations_tree()
-    locations_dict = locations_tree.to_dict()
+def collect_json(locations_root: LocationNode) -> str:
+    locations_dict = locations_root.to_dict()
     new_json = json.dumps(locations_dict, ensure_ascii=False)
     return new_json
 

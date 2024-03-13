@@ -27,6 +27,7 @@ def generate_location_indent(indent):
 
 
 def get_category_tree():
+    CategoryNode.categoty_id = 0
     all_categories = CategoryNode("Все категории")
 
     raw_locations = {
@@ -63,9 +64,7 @@ def get_category_tree():
 
 # Получаем словарь из дерева и сериализуем его в JSON
 
-
-def collect_json() -> str:
-    category_tree = get_category_tree()
-    categories_dict = category_tree.to_dict()
+def collect_json(category_root: CategoryNode) -> str:
+    categories_dict = category_root.to_dict()
     new_json = json.dumps(categories_dict, ensure_ascii=False)
     return new_json
