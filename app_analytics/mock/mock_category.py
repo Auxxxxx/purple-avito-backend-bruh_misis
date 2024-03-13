@@ -16,8 +16,8 @@ class CategoryNode:
     def to_dict(self):
         # Рекурсивно преобразовываем структуру в словарь
         return {
-            'id': self.id,
-            'name': self.name,
+            'key': self.id,
+            'label': self.name,
             'children': [child.to_dict() for child in self.children]
         }
 
