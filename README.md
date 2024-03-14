@@ -21,6 +21,7 @@
     cd purple-avito-backend-bruh_misis/
     cp .env.example .env
     docker compose up -d
+Доступ к приложению на http://localhost:8080
 
 | Библиотека       | Документация                                               |
 |------------------|------------------------------------------------------------|
